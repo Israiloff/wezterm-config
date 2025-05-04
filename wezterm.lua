@@ -1,10 +1,14 @@
 local wezterm = require 'wezterm'
 local config = {}
 
--- Appearance
 config.font = wezterm.font 'RobotoMono Nerd Font'
 config.font_size = 15
 config.line_height = 1.1
+config.foreground_text_hsb = {
+  hue = 1.0,
+  saturation = 1.0,
+  brightness = 1.5,
+}
 
 config.window_background_opacity = 0.60
 config.macos_window_background_blur = 25
