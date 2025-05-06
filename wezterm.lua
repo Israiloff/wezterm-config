@@ -49,7 +49,7 @@ config.background = {
     repeat_x = 'NoRepeat',
     repeat_y = 'NoRepeat',
     hsb = dimmer,
-    opacity = 0.9
+    opacity = 0.8
   }
 }
 
