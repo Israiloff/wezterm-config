@@ -1,13 +1,15 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 config.font = wezterm.font("RobotoMono Nerd Font")
 config.font_size = 15
 config.line_height = 1.1
+
 config.foreground_text_hsb = {
 	hue = 1.0,
 	saturation = 1.0,
-	brightness = 1.5,
+	brightness = 1.2,
 }
 
 config.window_background_opacity = 0.60
@@ -23,17 +25,7 @@ config.window_padding = {
 	bottom = 20,
 }
 
-local mux = wezterm.mux
 local dimmer = { brightness = 0.2, saturation = 1.0 }
-
-wezterm.on("gui-startup", function(cmd)
-	local active = wezterm.gui.screens().active
-	local tab, pane, window = mux.spawn_window(cmd or {
-		height = active.height,
-	})
-	window:gui_window():set_position(active.x, active.y)
-	window:gui_window():set_inner_size(active.width, active.height)
-end)
 
 config.background = {
 	{
@@ -48,5 +40,12 @@ config.background = {
 		opacity = 0.8,
 	},
 }
+
+wezterm.on("gui-startup", function(cmd)
+	local active = wezterm.gui.screens().active
+	local _, _, window = mux.spawn_window(cmd or {})
+	window:gui_window():set_position(active.x, active.y)
+	window:gui_window():set_inner_size(active.width, active.height)
+end)
 
 return config
